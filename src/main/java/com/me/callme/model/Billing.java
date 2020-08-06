@@ -67,14 +67,14 @@ public class Billing implements Serializable{
 	private Integer  status;
 	
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asis/Kolkata")
 	@SerializedName("request_date_time")
 	@Expose
 	@Column(name = "request_date_time")
 	Date request_date_time;
 	
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asis/Kolkata")
 	@SerializedName("response_date_time")
 	@Expose
 	@Column(name = "response_date_time")

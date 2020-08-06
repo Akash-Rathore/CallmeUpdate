@@ -41,7 +41,7 @@ public class Redeem implements Serializable{
 	
 	
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Kolkata")
 	@Column(name = "date_time")
 	private Date date_time;
 	

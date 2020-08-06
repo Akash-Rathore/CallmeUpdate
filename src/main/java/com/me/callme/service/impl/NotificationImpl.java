@@ -1,7 +1,8 @@
 package com.me.callme.service.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -51,12 +52,20 @@ public class NotificationImpl implements NotificationService {
 		FcmResponse res = client.pushToEntities(msg);
 		notification.setStatus(res.getSuccess());
 		notification.setMessage_type(notification.getMessage_type());
-		notification.setResult(res.getResult().toString());
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+		notification.setResult(res.getResult().toString());		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
 //		2020-07-06 18:41:51
-		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Kolkata"));
-		Date currentDate = calendar.getTime();
+		//Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Kolkata"));
+		Date currentDate;
+		try {
+			currentDate = formatter.parse(formatter.format(new Date()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			currentDate = new  Date();
+		}
+		log.info("current date:-" + currentDate.toString());
 		notification.setDatetime(currentDate);
 	    mNotificationRepository.save(notification);
 		System.out.println(res);

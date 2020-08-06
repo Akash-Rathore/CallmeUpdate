@@ -22,7 +22,7 @@ public class NotificationScheduler {
     private NotificationService notificationService;
 
 //    @Scheduled(cron = "0/10 * * * * ?") // Every 10 seconds
-    @Scheduled(cron = "0 0 10 * * *") // Every day at 10 AM
+    @Scheduled(cron = "0 0 10 * * *", zone = "Asia/Kolkata") // Every day at 10 AM
     public void notificationScheduler() {
         logger.info("Scheduler called");
         Iterable<User> allUsers = userRepository.findAll();
@@ -43,7 +43,7 @@ public class NotificationScheduler {
     }
     
     //@Scheduled(cron = "0/12 * * * * ?") // Every 12 seconds
-    @Scheduled(cron = "0 0 11 * * *") // Every day at 10.30 AM
+    @Scheduled(cron = "0 0 11 * * *", zone = "Asia/Kolkata") // Every day at 10.30 AM
     public void notificationScheduler2() {
         logger.info("Scheduler called");
         Iterable<User> allUsers = userRepository.findAll();

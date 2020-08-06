@@ -55,7 +55,7 @@ public class Notification implements Serializable {
 	@Column(name = "partyB_id")
 	Integer partyB_id;
 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Kolkata")
 	@SerializedName("datetime")
 	@Expose
 	@Column(name = "datetime")
