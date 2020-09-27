@@ -1,0 +1,391 @@
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gossipline | Subadmin Panel</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.png">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="../css/all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="../fonts/flaticon.css">
+    <!-- Full Calender CSS -->
+    <link rel="stylesheet" href="../css/fullcalendar.min.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="../css/animate.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Modernize js -->
+    <script src="../js/modernizr-3.6.0.min.js"></script>
+    
+      <style>
+    
+	  #loader {
+	  height: 100% !important;
+	  overflow: visible;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  z-index: 9999999;
+	  background: rgba(255,255,255,.5);
+	  text-align: center;
+	}
+	
+	#loader svg{
+	  position: fixed;
+	  top:50%;
+	  left: 50%;
+	  transform: translate(-50%,-50%);
+	}
+    </style>
+    
+</head>
+<body>
+  
+   <div th:if="${session.subadminEmail==null}">
+           <script>
+           window.location.href='./'; 
+          </script>
+     </div>
+     
+    <div id="wrapper" class="wrapper bg-ash">
+       <!-- Header Menu Area Start Here -->
+        <div class="navbar navbar-expand-md header-menu-one bg-light">
+            <div class="nav-bar-header-one">
+                <div class="header-logo">
+                    <a href="dashboard.html">
+                        <img src="../img/Gossip-Line- Logo.jpg" width="192px" alt="logo"/>
+                     </a>   
+                </div>
+                 <div class="toggle-button sidebar-toggle">
+                    <button type="button" class="item-link">
+                        <span class="btn-icon-wrap">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="d-md-none mobile-nav-bar">
+               <button class="navbar-toggler pulse-animation" type="button" data-toggle="collapse" data-target="#mobile-navbar" aria-expanded="false">
+                    <i class="far fa-arrow-alt-circle-down"></i>
+                </button>
+                <button type="button" class="navbar-toggler sidebar-toggle-mobile">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="header-main-menu collapse navbar-collapse" id="mobile-navbar">
+                <ul class="navbar-nav">
+                    <li class="navbar-item header-search-bar">
+                        <div class="input-group stylish-input-group">
+                            <span class="input-group-addon">
+                                <button type="submit">
+                                    <span class="flaticon-search" aria-hidden="true"></span>
+                                </button>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Find Something . . ."/>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="navbar-item dropdown header-admin">
+                        <a class="navbar-nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                            aria-expanded="false">
+                            <div class="admin-title">
+                                <h5 class="item-title" th:text="${session.adminName}"></h5>
+                                <span>Subadmin</span>
+                            </div>
+                            <div class="admin-img">
+                                <img src="../img/figure/admin.jpg" alt="Admin"/>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="item-header">
+                                <h6 class="item-title" th:text="${session.adminName}"></h6>
+                            </div>
+                            <div class="item-content">
+                                <ul class="settings-list">
+                                    <li><a href="./profile.html"><i class="flaticon-user"></i>My Profile</a></li>
+                                     <li><a href="./logout"><i class="flaticon-turn-off"></i>Log Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- Header Menu Area End Here -->
+        <!-- Page Area Start Here -->
+        <div class="dashboard-page-one">
+            <!-- Sidebar Area Start Here -->
+             <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+               <div class="mobile-sidebar-header d-md-none">
+                    <div class="header-logo">
+                       <!--  <a href="dashboard.html"><img src="img/logo1.png" alt="logo"></a> -->
+                    </div>
+               </div>
+                <div class="sidebar-menu-content">
+                    <ul class="nav nav-sidebar-menu sidebar-toggle-view">
+                        <li class="nav-item">
+                            <a href="./dashboard.html" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                        </li>
+                    <!--      <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Packages</span></a>
+                             <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="packages-list" class="nav-link"><i class="fas fa-angle-right"></i>All Packages</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="new-package" class="nav-link"><i class="fas fa-angle-right"></i>New Package</a>
+                                </li>
+                            </ul>
+                        </li> -->
+                        <li class="nav-item sidebar-nav-item" th:if="${session.pic_approval_rights=='on'}">
+                            <a href="#" class="nav-link"><i class="flaticon-multiple-users-silhouette"></i><span>Profile Pic Moderation</span></a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="./user-list.html" class="nav-link"><i class="fas fa-angle-right"></i>All Profile Pic Moderation</a>
+                                </li>
+                            </ul>
+                        </li>
+                       <li class="nav-item sidebar-nav-item" th:if="${session.notifi_rights=='on'}">
+                            <a href="#" class="nav-link"><i class="far fa-bell"></i><span>Notification </span></a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="./notification" class="nav-link"><i class="fas fa-angle-right"></i>All Notification</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a href="./new-category" class="nav-link"><i class="fas fa-angle-right"></i>Add New Notification</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" th:if="${session.redem_rights=='on'}">
+                            <a href="./redeem" class="nav-link"><i class="fa fa-gift"></i><span>Redemption</span></a>
+                        </li>
+                        <!--    <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link"><i class="fa fa-user" aria-hidden="true"></i><span>Panel User Interface</span></a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="subadmin" class="nav-link"><i class="fas fa-angle-right"></i>All User</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a href="addsubadmin" class="nav-link"><i class="fas fa-angle-right"></i>Add New User</a>
+                                </li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- Sidebar Area End Here -->
+            <div class="dashboard-content-one">
+                <!-- Breadcubs Area Start Here -->
+                <div class="breadcrumbs-area">
+                    <ul>
+                        <li>
+                            <a href="./dashboard.html">Home</a>
+                        </li>
+                        <li>Profile</li>
+                    </ul>
+                </div>
+                <!-- Breadcubs Area End Here -->
+                <div class="dashboard-content-one">
+                <!-- Add Class Area Start Here -->
+                <div class="card height-auto">
+                    <div class="card-body">
+                        <div class="heading-layout1">
+                            <div class="item-title">
+                                <h3>Profile</h3>
+                            </div>
+                        </div>
+                        <form class="form-submit">
+                            <div class="row"  th:each="profileRecord: ${profileRecord}">
+                                <div class="col-xl-12 col-lg-12 col-12 form-group">
+                                      <div style="text-align:center;">
+                              <!--          <img src="abc.png" th:src="@{(${profileRecord.PendingImg})}" alt="user_logo" style="width:250px;height:140px;border:1px solid #000;border-radius: 22px;" /> 
+                               -->       </div>
+                                </div> 
+                                <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="username"  placeholder="Username" class="form-control"  th:value="${profileRecord.username}"/>
+                                </div>
+                                   <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="email"  placeholder="Email" class="form-control"  th:value="${profileRecord.email}" readonly/>
+                                </div>
+                                 <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <label>Mobile</label>
+                                    <input type="text" name="mobile" placeholder="Mobile" class="form-control" th:value="${profileRecord.mobile}"/>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <label>City</label>
+                                    <input type="text" name="city" placeholder="City" class="form-control" th:value="${profileRecord.city}"/>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <label>Password</label>
+                                    <input type="text" name="password" placeholder="Password" class="form-control" th:value="${profileRecord.password}"/>
+                                    <input type="hidden" name="userId"  th:value="${profileRecord.userId}" />
+                                </div>
+                                
+                                <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <label>Gender</label>
+                                    <select class="form-control" name="gender">
+                                        <option th:value="${profileRecord.gender}" th:text="${profileRecord.gender}"></option> 
+                                        <option value="Male">male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                 
+                                  <div class="col-xl-12 col-lg-12 col-12 form-group">
+                                     <div class="row">
+                                          <div class="col-xl-4 col-lg-4 col-4 form-group" style="display:flex;"  th:if="${session.notifi_rights=='on'}">
+                                             <label>Notification Rights</label>
+                                             <input type="checkbox" name="notifi_rights" style="height:24px;"  class="form-control" checked>
+                                          </div>
+                                           <div class="col-xl-4 col-lg-4 col-4 form-group" style="display:flex;" th:if="${session.pic_approval_rights=='on'}">
+                                             <label>Pic Approval Rights</label>
+                                             <input type="checkbox" name="pic_approval_rights"  style="height:24px;"  class="form-control" checked>
+                                          </div>
+                                           <div class="col-xl-4 col-lg-4 col-4 form-group" style="display:flex;" th:if="${session.redem_rights=='on'}">
+                                             <label>Redemption Screen rights</label>
+                                             <input type="checkbox" name="redem_rights"  style="height:24px;"  class="form-control" checked>
+                                          </div>
+                                     </div>
+                                </div>
+                               <!--  
+                               <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <label>Minutes</label>
+                                    <input type="text" name="min"  placeholder="Min" class="form-control" th:value="${profileRecord.min}"/>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <label>Sms</label>
+                                    <input type="text" name="sms" placeholder="Sms" class="form-control" th:value="${profileRecord.sms}"/>
+                                   
+                                </div>
+                               -->
+                                <div class="col-md-6 form-group"></div>
+                                <div class="col-12 form-group mg-t-8" style="display:flex;flex-direction:row-reverse;">
+                                    <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Student Table Area End Here -->
+                 <footer class="footer-wrap-layout1">
+                    <div class="copyright">© Copyrights <a href="#">Gossipline</a> 2020.</div>
+                </footer>
+            </div>
+        </div>
+        <!-- Page Area End Here -->
+    </div>
+         <div id="loader" style="display:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                <circle cx="50" cy="50" r="30" stroke="#2b699f" stroke-width="10" fill="none"></circle>
+                <circle cx="50" cy="50" r="30" stroke="#6c757d" stroke-width="8" stroke-linecap="round" fill="none" transform="rotate(615.177 50 50)">
+                    <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;180 50 50;720 50 50" keyTimes="0;0.5;1"></animateTransform>
+                    <animate attributeName="stroke-dasharray" repeatCount="indefinite" dur="1s" values="18.84955592153876 169.64600329384882;94.2477796076938 94.24777960769377;18.84955592153876 169.64600329384882" keyTimes="0;0.5;1"></animate>
+                </circle>	
+            </svg>
+        </div>
+      <!-- jquery-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <!-- Plugins js -->
+    <script src="../js/plugins.js"></script>
+    <!-- Popper js -->
+    <script src="../js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- Counterup Js -->
+    <script src="../js/jquery.counterup.min.js"></script>
+    <!-- Moment Js -->
+    <script src="../js/moment.min.js"></script>
+    <!-- Waypoints Js -->
+    <script src="../js/jquery.waypoints.min.js"></script>
+    <!-- Scroll Up Js -->
+    <script src="../js/jquery.scrollUp.min.js"></script>
+    <!-- Full Calender Js -->
+    <script src="../js/fullcalendar.min.js"></script>
+    <!-- Chart Js -->
+    <script src="../js/Chart.min.js"></script>
+    <!-- Custom Js -->
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+   
+    <script type="text/javascript">
+    
+    
+    $(document).on('submit', '.form-submit', function (e) {
+        e.preventDefault();
+         
+         var form=$(this);
+    	 var formdata=new FormData($(form)[0]);
+    	 var data={};
+         formdata.forEach(function(value,key)
+    	 {
+    		  data[key]=value;
+    	 }); 
+    	 
+         $('#loader').show();
+         $.ajax({
+    	       url:"./updateuser",
+    	       type:"POST",
+    	       dataType:"json",
+    	       data:data,
+    	       success:function(data,textStatus,jqXHR)
+    	       {
+    	    	   console.log(data.status);
+    	    	 
+    	    	   if(data.status){
+    	    		  
+    	    		  Swal.fire({
+    	    			  position: 'center',
+    	    			  icon: 'success',
+    	    			  title: 'Update Success',
+    	    			  showConfirmButton: false,
+    	    			  timer: 3500
+    	    			})
+    	    	
+    	    			  $('#loader').hide();   	
+    	    			
+    	    	  }
+    	    	  else
+    	    	  {
+    	    		   Swal.fire({
+     	    			  icon:'error',
+     	    			  title:'something went wrong',
+     	    			  text:"Something went Wrong",
+     	    			  footer:'',
+     	    			  timer:3000
+     	    			}) 
+     	    			$('#loader').hide();   	
+    	    		  
+    	    	  }
+    	    	  
+    	      },
+    	     error:function(e)
+    	    {
+    	    	console.log("error in pages");
+    	    }
+      
+         });
+      
+     });
+    </script>
+</body>
+</html>

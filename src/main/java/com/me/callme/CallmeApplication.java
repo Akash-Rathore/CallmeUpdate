@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -24,7 +25,13 @@ public class CallmeApplication {
 	 * @Bean public Docket productApi() { return new
 	 * Docket(DocumentationType.SWAGGER_2).select()
 	 * .apis(RequestHandlerSelectors.basePackage("com.me.callme.api")).build(); }
+	 * 
 	 */
+
+
+	
+
+	
 	@Bean
 	   public Docket productApi() {
 	      return new Docket(DocumentationType.SWAGGER_2).select()

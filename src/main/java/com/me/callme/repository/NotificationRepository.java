@@ -19,4 +19,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
 	@Query(value="from Notification r where  r.partyB_id=:user_id")
 	List<Notification> findByUserId(Integer user_id,Pageable pageable);
 	
+    public List<Notification> findAllByOrderByIdDesc();
+
 }

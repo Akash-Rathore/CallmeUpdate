@@ -1,8 +1,11 @@
 package com.me.callme.service;
 
+import java.util.List;
+
 import com.me.callme.model.Billing;
 import com.me.callme.model.Notification;
 import com.me.callme.model.Product;
+import com.me.callme.model.User;
 
 public interface NotificationService {
 
@@ -27,6 +30,8 @@ public interface NotificationService {
 	public Notification generateNotifyForApprovedImage(Integer userId);
 
 	public Notification generateNotify(Integer userId, String msg, String type);
+	
+	public List<Notification> getAllNotification();
 	
 	
 	

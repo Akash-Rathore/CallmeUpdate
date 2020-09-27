@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.me.callme.model.BlockedUser;
+import com.me.callme.model.BlockerResponse;
+import com.me.callme.model.FavouritResponse;
 import com.me.callme.model.FavouriteUser;
+import com.me.callme.model.Product;
+import com.me.callme.model.RedeemResponse;
 import com.me.callme.model.User;
 import com.me.callme.model.ps_aors;
 import com.me.callme.model.ps_auths;
@@ -31,6 +36,7 @@ import com.me.callme.repository.Ps_authsRepository;
 import com.me.callme.repository.Ps_endpointsRepository;
 import com.me.callme.repository.UserRepository;
 import com.me.callme.service.UserService;
+
 import org.slf4j.Logger;
 
 import lombok.extern.slf4j.Slf4j;
@@ -464,6 +470,141 @@ public class UserServiceImpl implements UserService {
 		User user = areaRes.get();
 		return user;
 	}
+	
+	public List<User> getAllUser() {
+		List<User> areaRes = userrepository.findAll();
+		return areaRes;
+	}
+
+	@Override
+	public void deleteUser(int delete) {
+	    userrepository.deleteById((long) delete);
+	}
+
+	@Override
+	public Optional<User> getSingleUser(long singleRecord) {
+		Optional<User> areaRes = userrepository.findById(singleRecord);
+	   return areaRes;
+	}
+
+	@Override
+	public int UpdateUser(User user) {
+		  
+		   int updateuser=userrepository.updateUser(user.getUserId() ,user.getUsername(), user.getGender() , user.getCity() , user.getMobile() , user.getPassword());
+		   return updateuser;
+	 }
+
+	@Override 
+	public int userApprovalStatus(long userId, String pending_img,String status) {
+		
+		int change_status=1;
+		
+		if(status.equalsIgnoreCase("reject"))
+		{
+			
+			return userrepository.rejectApprovalStatus(userId , pending_img);
+			
+	        		
+		}else if(status.equalsIgnoreCase("accept")) {
+		
+			return userrepository.acceptApprovalStatus(userId , pending_img,change_status);
+			
+		}
+		
+		return 0;
+	}
+
+	
+	@Override
+	public List<User> BlackUser(long userId) {
+		
+		List<BlockerResponse> blockuser=userrepository.blockedUser(userId);
+		Iterator<BlockerResponse> iterator = blockuser.iterator();
+		List<User> userlist = new ArrayList<>();
+		while(iterator.hasNext()) {
+			
+			BlockerResponse blockerResponse = iterator.next();
+			long id = Long.parseLong(blockerResponse.getBlocked_user());
+		    Optional<User> blockUser=userrepository.findById(id);   
+		    if(blockUser.isPresent()) {
+		    	  userlist.add(blockUser.get());
+			}
+			
+		}
+		
+		return userlist;
+	}
+	
+	
+
+	@Override
+	public List<User> FavouritUser(long userId) {
+		
+		List<FavouritResponse> favourituser=userrepository.favouritUser(userId);
+		Iterator<FavouritResponse> iterator = favourituser.iterator();
+		List<User> userlist = new ArrayList<>();
+		while(iterator.hasNext()) {
+			FavouritResponse favouritResponse = iterator.next();          
+			long id = Long.parseLong(favouritResponse.getFavouriteuser());
+			Optional<User> favouritUser=userrepository.findById(id);   
+		      if(favouritUser.isPresent()) {
+		    	  userlist.add(favouritUser.get());
+			  }
+			
+		}
+		
+		return userlist;
+	}
+
+	@Override
+	public Long countUser() {
+		
+		
+		return userrepository.countUser();
+	}
+
+	
+	@Override
+	public List<RedeemResponse> redeemAll() {
+		List<RedeemResponse> redemresponse=userrepository.redeemAll();
+		return redemresponse;
+	}
+
+	@Override
+	public List<User> genderCategory(String gender) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> getsubadmin() {
+		List<User> areaRes = userrepository.getsubadmin();
+		return areaRes;
+	}
+
+	@Override
+	public void addsubadmin(User user) {
+		userrepository.save(user);
+	}
+
+	@Override
+	public void deletesubadmin(int delete) {
+         userrepository.deleteById((long) delete);
+	}
+
+	@Override
+	public List<User> subAdminLogin(String email, String password) {
+		return userrepository.subAdminLogin(email,password);
+	}
+
+	@Override
+	public int adminUpdateUser(User user) {
+	   
+		 int updateuser=userrepository.adminUpdateUser(user.getUserId() ,user.getUsername(), user.getGender() , user.getCity() , user.getMobile() , user.getPassword(),user.getNotifi_rights(),user.getPic_approval_rights(),user.getRedem_rights());
+		 return updateuser;
+		
+	}
+
 
 	
 

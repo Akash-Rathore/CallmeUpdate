@@ -2,6 +2,7 @@ package com.me.callme.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -156,6 +157,9 @@ public class Notification implements Serializable {
 				+ partyA_id + ", partyB_id=" + partyB_id + ", datetime=" + datetime + ", message_type=" + message_type
 				+ ", status=" + status + ", result=" + result + "]";
 	}
+
+	
+	
 	
 	
 

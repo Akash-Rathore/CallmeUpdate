@@ -2,19 +2,25 @@ package com.me.callme.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "go_redeem")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class Redeem implements Serializable{
+
+
+	private static final long serialVersionUID = 2683317269832649079L;
 
 	
 	@Id
@@ -39,14 +45,12 @@ public class Redeem implements Serializable{
 	private String payment_type;
 	
 	
-	
-	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
 	@Column(name = "date_time")
 	private Date date_time;
-	
 
 	
+
 	
 	
 	
@@ -105,7 +109,14 @@ public class Redeem implements Serializable{
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "{id=" + id + ", user_id=" + user_id + ", amount=" + amount + ", mobile=" + mobile + ", status="
+				+ status + ", payment_type=" + payment_type + ", date_time=" + date_time + "},";
+	}
+
+
 	
 	
 	

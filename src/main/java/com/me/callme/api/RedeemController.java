@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.me.callme.model.Billing;
 import com.me.callme.model.Redeem;
 import com.me.callme.repository.RedeemRepository;
-import com.me.callme.repository.productRepository;
+import com.me.callme.repository.ProductRepository;
 import com.me.callme.service.NotificationService;
 
 import io.swagger.annotations.Api;

@@ -2,12 +2,17 @@ package com.me.callme.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Stream;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
@@ -115,9 +120,82 @@ public class User implements Serializable {
 	@Column(name = "billing_expiry_date", length = 512)
 	private Date billingExpiryDate;
 	
+
+	@Column(name = "role", length = 512)
+	private String role;
+	
+	@Column(name = "email", length = 512)
+	private String email;
+
+	@Column(name = "password", length = 512)
+	private String password;
+	
+	@Column(name = "notifi_rights", length = 512)
+	private String notifi_rights;
+	
+	@Column(name = "pic_approval_rights", length = 512)
+	private String pic_approval_rights;
+	
+	@Column(name = "redem_rights", length = 512)
+	private String redem_rights;
+  
+	
+	@OneToMany(targetEntity = BlockedUser.class , cascade = CascadeType.ALL)
+	 @JoinColumn(name ="blocked_by" , referencedColumnName = "user_id")
+	 private List<BlockedUser> blockedUser;
+	
+	 @OneToMany(targetEntity = FavouriteUser.class , cascade = CascadeType.ALL)
+	 @JoinColumn(name ="favourite_by" , referencedColumnName = "user_id")
+	 private List<FavouriteUser> favouriteUser;
+	
+     @OneToMany(targetEntity = Redeem.class , cascade = CascadeType.ALL)
+	 @JoinColumn(name ="user_id" , referencedColumnName = "user_id")
+	 private List<Redeem> redeem;
+		
+		
 	
 	
+	public User()
+	{
+		
+	}
 	
+	public User(long userId2, String username2, String gender2, String city2, String mobile2, String password,String notifi_rights,String pic_approval_rights,String redem_rights) {
+		
+		this.userId=userId2;
+		this.username=username2;
+		this.gender=gender2;
+		this.city=city2;
+		this.mobile=mobile2;
+		this.password=password;
+	    this.notifi_rights=notifi_rights;
+	    this.pic_approval_rights=pic_approval_rights;
+	    this.redem_rights=redem_rights;
+	}
+	
+	public User(long userId2, String username2, String gender2, String city2, String mobile2, String password) {
+		this.userId=userId2;
+		this.username=username2;
+		this.gender=gender2;
+		this.city=city2;
+		this.mobile=mobile2;
+		this.password=password;
+	    
+	}
+
+	public User(String username, String role, String email, String mobile, String city, String password,String gender,String notifi_rights,String pic_approval_rights,String redem_rights) {
+		
+		this.username=username;
+		this.role=role;
+		this.email=email;
+		this.mobile=mobile;
+		this.city=city;
+		this.password=password;
+	    this.gender=gender;
+	    this.notifi_rights=notifi_rights;
+	    this.pic_approval_rights=pic_approval_rights;
+	    this.redem_rights=redem_rights;
+	}
 	
 	public Date getBillingExpiryDate() {
 		return billingExpiryDate;
@@ -352,6 +430,62 @@ public class User implements Serializable {
 
 	public void setSms(Integer sms) {
 		this.sms = sms;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public List<BlockedUser> getBlockedUser() {
+		return blockedUser;
+	}
+	public void setBlockedUser(List<BlockedUser> blockedUser) {
+		this.blockedUser = blockedUser;
+	}
+	public List<FavouriteUser> getFavouriteUser() {
+		return favouriteUser;
+	}
+	public void setFavouriteUser(List<FavouriteUser> favouriteUser) {
+		this.favouriteUser = favouriteUser;
+	}
+	public List<Redeem> getRedeem() {
+		return redeem;
+	}
+	public void setRedeem(List<Redeem> redeem) {
+		this.redeem = redeem;
+	}
+
+	 public String getEmail() {
+			return email;
+	 }
+	 public void setEmail(String email) {
+			this.email = email;
+	 }
+
+	 public String getPassword() {
+			return password;
+	 }
+	 public void setPassword(String password) {
+			this.password = password;
+	 }
+	public String getNotifi_rights() {
+		return notifi_rights;
+	}
+	public void setNotifi_rights(String notifi_rights) {
+		this.notifi_rights = notifi_rights;
+	}
+	public String getPic_approval_rights() {
+		return pic_approval_rights;
+	}
+	public void setPic_approval_rights(String pic_approval_rights) {
+		this.pic_approval_rights = pic_approval_rights;
+	}
+	public String getRedem_rights() {
+		return redem_rights;
+	}
+	public void setRedem_rights(String redem_rights) {
+		this.redem_rights = redem_rights;
 	}
 
 	

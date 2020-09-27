@@ -3,6 +3,7 @@ package com.me.callme.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import org.riversun.fcm.FcmClient;
@@ -219,6 +220,12 @@ public class NotificationImpl implements NotificationService {
 		
 		
 		return mNotification;
+	}
+
+	
+	@Override
+	public List<Notification> getAllNotification() {
+		return mNotificationRepository.findAllByOrderByIdDesc();
 	}
 
 

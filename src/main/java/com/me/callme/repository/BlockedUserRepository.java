@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.me.callme.model.BlockedUser;
+import com.me.callme.model.BlockerResponse;
 import com.me.callme.model.FavouriteUser;
 
 @Repository
@@ -18,6 +19,8 @@ public interface BlockedUserRepository extends JpaRepository<BlockedUser, Long>{
 	
 	@Query(value= " from BlockedUser c where c.blockedby=:blockedby ")
 	public List<BlockedUser> getAllBlockedUserById(@Param("blockedby") Long blockedby);
+	
+		
 	
 	
 }

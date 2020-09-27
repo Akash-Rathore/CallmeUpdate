@@ -30,7 +30,7 @@ public class Product implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private long id;
 	
 	@Column(name = "amount")
 	private Integer amount;
@@ -58,9 +58,35 @@ public class Product implements Serializable{
 	@Column(name = "sms")
 	private Integer  sms;
 	
-	
-	
 
+
+	public Product() {
+		
+		
+	}
+	public Product(Integer amount2, Integer country2, Integer min2, Integer sms2, Integer status2, String unit2)
+	{
+	      this.amount=amount2;
+	      this.country=country2;
+	      this.min=min2;
+	      this.sms=sms2;
+	      this.status=status2;
+	      this.unit=unit2;
+	}
+
+	
+	public Product(Integer amount2, Integer country2, Integer min2, Integer sms2, Integer status2, String unit2,
+			Integer package_id) {
+	
+	      this.amount=amount2;
+	      this.country=country2;
+	      this.min=min2;
+	      this.sms=sms2;
+	      this.status=status2;
+	      this.unit=unit2;
+          this.id=package_id;
+		
+	}
 	public Integer getMin() {
 		return min;
 	}
@@ -77,13 +103,7 @@ public class Product implements Serializable{
 		this.sms = sms;
 	}
 
-	public Integer getId() {
-		return id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Integer getAmount() {
 		return amount;
@@ -133,6 +153,15 @@ public class Product implements Serializable{
 		this.pack_des = pack_des;
 	}
 
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", amount=" + amount + ", unit=" + unit + ", country=" + country + ", operator="
